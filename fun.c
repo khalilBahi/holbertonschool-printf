@@ -19,7 +19,7 @@ int print_character(va_list arg)
 }
 /**
  * print_string - printf string
- * Return: void
+ * Return: i
  */
 
 int print_string(va_list arg)
