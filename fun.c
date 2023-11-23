@@ -37,7 +37,7 @@ int print_string(va_list arg)
         _putchar(str[i]);
     }
 
-    return (0);
+    return (i);
 }
 /**
  * print_integer - printf integer
