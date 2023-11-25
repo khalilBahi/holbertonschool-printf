@@ -29,8 +29,8 @@ int print_string(va_list arg)
 
     if (str == NULL)
     {
-        write(1,"(null)",6);
-        return(6);
+        write(1, "(null)", 6);
+        return (6);
     }
 
     for (i = 0; str[i] != '\0'; i++)
@@ -45,35 +45,34 @@ int print_string(va_list arg)
  * Return: 0
  */
 
-int print_integer(va_list argument)
+int print_integer(va_list arg)
 {
 
-    int num = va_arg(argument, int);
-    int num_neg = 0, r = 0, last_digit;
+    int num = va_arg(arg, int);
+    int r = 0, last_digit;
+    int i = 0;
 
     if (num < 0)
     {
-        num_neg = 1;
-        num = -num;
-    }
-
-    if (num_neg)
-    {
         _putchar('-');
+        num = -num;
+        i++;
     }
-
-    while (num > 0)
+    else
     {
-        r = r * 10 + num % 10;
-        num = num / 10;
-    }
+        while (num > 0)
+        {
+            r = r * 10 + num % 10;
+            num = num / 10;
+        }
 
-    while (r > 0)
-    {
-        last_digit = r % 10;
-        _putchar(last_digit + '0');
-        r = r / 10;
+        while (r > 0)
+        {
+            last_digit = r % 10;
+            _putchar(last_digit + '0');
+            r = r / 10;
+            i++;
+        }
     }
-
-    return (0);
+    return (i);
 }
