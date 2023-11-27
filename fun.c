@@ -47,32 +47,31 @@ int print_string(va_list arg)
 
 int print_integer(va_list arg)
 {
-
-    int num = va_arg(arg, int);
-    int r = 0, last_digit;
-    int i = 0;
+    long int num = va_arg(arg, int);
+    int decimal = 1, i = 0;
+    long int digitaux;
 
     if (num < 0)
     {
-        _putchar('-');
-        num = -num;
-        i++;
+        i += _putchar('-');
+        num *= -1;
     }
-    else
-    {
-        while (num > 0)
-        {
-            r = r * 10 + num % 10;
-            num = num / 10;
-        }
 
-        while (r > 0)
-        {
-            last_digit = r % 10;
-            _putchar(last_digit + '0');
-            r = r / 10;
-            i++;
-        }
+    if (num < 10)
+        return (i += _putchar(num + '0'));
+
+    digitaux = num;
+
+    while (digitaux > 9)
+    {
+        decimal *= 10;
+        digitaux /= 10;
     }
+    while (decimal >= 1)
+    {
+        i += _putchar(((num / decimal) % 10) + '0');
+        decimal /= 10;
+    }
+
     return (i);
 }
